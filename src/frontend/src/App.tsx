@@ -1,24 +1,62 @@
 import { Toaster } from "@/components/ui/sonner";
 import { motion } from "motion/react";
+import QRCode from "qrcode";
+import { useEffect, useRef, useState } from "react";
 import { SiWhatsapp } from "react-icons/si";
+
+const VCF_CONTENT = [
+  "BEGIN:VCARD",
+  "VERSION:3.0",
+  "FN:Nagarajan",
+  "ORG:InstaSite Kerala",
+  "TITLE:Sales Officer",
+  "TEL:+918838510443",
+  "EMAIL:cynorlux@gmail.com",
+  "ADR:;;Puliarakonnam Moonnammoodu Road;Thiruvananthapuram;;;India",
+  "URL:https://instasite.in",
+  "END:VCARD",
+].join("\n");
 
 export default function App() {
   const profileSrc =
     "/assets/uploads/file_00000000a268720b8d35c42ca2dd4768-019d356b-0113-7442-b1d1-e9afa2b638a9-1.png";
 
-  const vcfContent = [
-    "BEGIN:VCARD",
-    "VERSION:3.0",
-    "FN:Nagarajan",
-    "ORG:InstaSite Kerala",
-    "TITLE:Sales Officer",
-    "TEL:+918838510443",
-    "EMAIL:cynorlux@gmail.com",
-    "END:VCARD",
-  ].join("\n");
-
-  const vcfBlob = new Blob([vcfContent], { type: "text/vcard" });
+  const vcfBlob = new Blob([VCF_CONTENT], { type: "text/vcard" });
   const vcfUrl = URL.createObjectURL(vcfBlob);
+
+  const qrCanvasRef = useRef<HTMLCanvasElement>(null);
+  const [showQR, setShowQR] = useState(false);
+
+  useEffect(() => {
+    if (showQR && qrCanvasRef.current) {
+      QRCode.toCanvas(qrCanvasRef.current, VCF_CONTENT, {
+        width: 200,
+        margin: 2,
+        color: {
+          dark: "#000000",
+          light: "#ffffff",
+        },
+        errorCorrectionLevel: "M",
+      });
+    }
+  }, [showQR]);
+
+  const btnStyle = (bg: string, textColor = "white") => ({
+    display: "block",
+    margin: "10px 0",
+    padding: "14px",
+    borderRadius: "12px",
+    textDecoration: "none",
+    color: textColor,
+    fontWeight: 500,
+    background: bg,
+    transition: "transform 0.3s, box-shadow 0.3s",
+    cursor: "pointer",
+    border: "none",
+    width: "100%",
+    fontSize: "14px",
+    textAlign: "center" as const,
+  });
 
   return (
     <div
@@ -49,7 +87,6 @@ export default function App() {
             boxShadow: "0 0 25px rgba(0,0,0,0.6)",
           }}
         >
-          {/* Logo */}
           <div style={{ fontSize: "20px", fontWeight: 600, color: "#00d4ff" }}>
             InstaSite Kerala
           </div>
@@ -59,7 +96,6 @@ export default function App() {
             Build. Launch. Grow.
           </div>
 
-          {/* Profile photo */}
           <img
             src={profileSrc}
             alt="Nagarajan"
@@ -74,25 +110,16 @@ export default function App() {
             }}
           />
 
-          {/* Name */}
-          <div
-            style={{
-              fontSize: "26px",
-              color: "gold",
-              fontWeight: "bold",
-            }}
-          >
+          <div style={{ fontSize: "26px", color: "gold", fontWeight: "bold" }}>
             Nagarajan
           </div>
 
-          {/* Role */}
           <div
             style={{ fontSize: "14px", marginBottom: "15px", color: "white" }}
           >
             Sales Officer
           </div>
 
-          {/* Info */}
           <div
             style={{
               fontSize: "13px",
@@ -105,21 +132,10 @@ export default function App() {
             Thiruvananthapuram
           </div>
 
-          {/* Buttons */}
           <a
             href={vcfUrl}
             download="Nagarajan.vcf"
-            style={{
-              display: "block",
-              margin: "10px 0",
-              padding: "14px",
-              borderRadius: "12px",
-              textDecoration: "none",
-              color: "black",
-              fontWeight: 500,
-              background: "linear-gradient(45deg,#f7971e,#ffd200)",
-              transition: "transform 0.3s, box-shadow 0.3s",
-            }}
+            style={btnStyle("linear-gradient(45deg,#f7971e,#ffd200)", "black")}
             onMouseEnter={(e) => {
               (e.currentTarget as HTMLAnchorElement).style.transform =
                 "scale(1.05)";
@@ -137,17 +153,7 @@ export default function App() {
 
           <a
             href="tel:+918838510443"
-            style={{
-              display: "block",
-              margin: "10px 0",
-              padding: "14px",
-              borderRadius: "12px",
-              textDecoration: "none",
-              color: "white",
-              fontWeight: 500,
-              background: "linear-gradient(45deg,#007bff,#00c6ff)",
-              transition: "transform 0.3s, box-shadow 0.3s",
-            }}
+            style={btnStyle("linear-gradient(45deg,#007bff,#00c6ff)")}
             onMouseEnter={(e) => {
               (e.currentTarget as HTMLAnchorElement).style.transform =
                 "scale(1.05)";
@@ -167,17 +173,7 @@ export default function App() {
             href="https://wa.me/918838510443?text=Hi%20I%20saw%20your%20digital%20card"
             target="_blank"
             rel="noopener noreferrer"
-            style={{
-              display: "block",
-              margin: "10px 0",
-              padding: "14px",
-              borderRadius: "12px",
-              textDecoration: "none",
-              color: "white",
-              fontWeight: 500,
-              background: "linear-gradient(45deg,#25D366,#128C7E)",
-              transition: "transform 0.3s, box-shadow 0.3s",
-            }}
+            style={btnStyle("linear-gradient(45deg,#25D366,#128C7E)")}
             onMouseEnter={(e) => {
               (e.currentTarget as HTMLAnchorElement).style.transform =
                 "scale(1.05)";
@@ -199,17 +195,7 @@ export default function App() {
             href="https://maps.google.com/?q=Puliarakonnam Moonnammoodu Road Trivandrum"
             target="_blank"
             rel="noopener noreferrer"
-            style={{
-              display: "block",
-              margin: "10px 0",
-              padding: "14px",
-              borderRadius: "12px",
-              textDecoration: "none",
-              color: "white",
-              fontWeight: 500,
-              background: "linear-gradient(45deg,#ff512f,#dd2476)",
-              transition: "transform 0.3s, box-shadow 0.3s",
-            }}
+            style={btnStyle("linear-gradient(45deg,#ff512f,#dd2476)")}
             onMouseEnter={(e) => {
               (e.currentTarget as HTMLAnchorElement).style.transform =
                 "scale(1.05)";
@@ -229,17 +215,7 @@ export default function App() {
             href="https://instasite.in"
             target="_blank"
             rel="noopener noreferrer"
-            style={{
-              display: "block",
-              margin: "10px 0",
-              padding: "14px",
-              borderRadius: "12px",
-              textDecoration: "none",
-              color: "white",
-              fontWeight: 500,
-              background: "linear-gradient(45deg,#6a11cb,#2575fc)",
-              transition: "transform 0.3s, box-shadow 0.3s",
-            }}
+            style={btnStyle("linear-gradient(45deg,#6a11cb,#2575fc)")}
             onMouseEnter={(e) => {
               (e.currentTarget as HTMLAnchorElement).style.transform =
                 "scale(1.05)";
@@ -255,7 +231,45 @@ export default function App() {
             🌐 Visit Website
           </a>
 
-          {/* Footer */}
+          {/* QR Code section */}
+          <div style={{ marginTop: "20px" }}>
+            <button
+              type="button"
+              onClick={() => setShowQR((v) => !v)}
+              style={btnStyle("linear-gradient(45deg,#00d4ff,#007bff)")}
+            >
+              {showQR ? "🔼 Hide QR Code" : "📲 Show QR Code"}
+            </button>
+
+            {showQR && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3 }}
+                style={{
+                  background: "white",
+                  borderRadius: "16px",
+                  padding: "16px",
+                  display: "inline-block",
+                  marginTop: "12px",
+                  boxShadow: "0 0 20px rgba(0,212,255,0.4)",
+                }}
+              >
+                <canvas ref={qrCanvasRef} style={{ display: "block" }} />
+                <div
+                  style={{
+                    fontSize: "11px",
+                    color: "#555",
+                    marginTop: "8px",
+                    textAlign: "center",
+                  }}
+                >
+                  Scan to save contact
+                </div>
+              </motion.div>
+            )}
+          </div>
+
           <div
             style={{
               marginTop: "15px",
