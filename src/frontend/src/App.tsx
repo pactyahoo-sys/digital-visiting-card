@@ -1,7 +1,6 @@
 import { Toaster } from "@/components/ui/sonner";
 import { motion } from "motion/react";
-import QRCode from "qrcode";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { SiWhatsapp } from "react-icons/si";
 
 const VCF_CONTENT = [
@@ -17,6 +16,8 @@ const VCF_CONTENT = [
   "END:VCARD",
 ].join("\n");
 
+const QR_URL = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(VCF_CONTENT)}`;
+
 export default function App() {
   const profileSrc =
     "/assets/uploads/file_00000000a268720b8d35c42ca2dd4768-019d356b-0113-7442-b1d1-e9afa2b638a9-1.png";
@@ -24,22 +25,27 @@ export default function App() {
   const vcfBlob = new Blob([VCF_CONTENT], { type: "text/vcard" });
   const vcfUrl = URL.createObjectURL(vcfBlob);
 
-  const qrCanvasRef = useRef<HTMLCanvasElement>(null);
   const [showQR, setShowQR] = useState(false);
+  const [installPrompt, setInstallPrompt] = useState<any>(null);
+  const [installed, setInstalled] = useState(false);
 
   useEffect(() => {
-    if (showQR && qrCanvasRef.current) {
-      QRCode.toCanvas(qrCanvasRef.current, VCF_CONTENT, {
-        width: 200,
-        margin: 2,
-        color: {
-          dark: "#000000",
-          light: "#ffffff",
-        },
-        errorCorrectionLevel: "M",
-      });
-    }
-  }, [showQR]);
+    const handler = (e: any) => {
+      e.preventDefault();
+      setInstallPrompt(e);
+    };
+    window.addEventListener("beforeinstallprompt", handler);
+    window.addEventListener("appinstalled", () => setInstalled(true));
+    return () => window.removeEventListener("beforeinstallprompt", handler);
+  }, []);
+
+  const handleInstall = async () => {
+    if (!installPrompt) return;
+    installPrompt.prompt();
+    const { outcome } = await installPrompt.userChoice;
+    if (outcome === "accepted") setInstalled(true);
+    setInstallPrompt(null);
+  };
 
   const btnStyle = (bg: string, textColor = "white") => ({
     display: "block",
@@ -231,6 +237,32 @@ export default function App() {
             🌐 Visit Website
           </a>
 
+          {/* Install App button */}
+          {installPrompt && !installed && (
+            <motion.button
+              type="button"
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+              onClick={handleInstall}
+              data-ocid="install.primary_button"
+              style={btnStyle("linear-gradient(45deg,#00b894,#00cec9)")}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLButtonElement).style.transform =
+                  "scale(1.05)";
+                (e.currentTarget as HTMLButtonElement).style.boxShadow =
+                  "0 0 10px rgba(255,255,255,0.3)";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLButtonElement).style.transform =
+                  "scale(1)";
+                (e.currentTarget as HTMLButtonElement).style.boxShadow = "none";
+              }}
+            >
+              📲 Install App
+            </motion.button>
+          )}
+
           {/* QR Code section */}
           <div style={{ marginTop: "20px" }}>
             <button
@@ -255,7 +287,13 @@ export default function App() {
                   boxShadow: "0 0 20px rgba(0,212,255,0.4)",
                 }}
               >
-                <canvas ref={qrCanvasRef} style={{ display: "block" }} />
+                <img
+                  src={QR_URL}
+                  alt="QR Code"
+                  width={200}
+                  height={200}
+                  style={{ display: "block" }}
+                />
                 <div
                   style={{
                     fontSize: "11px",
