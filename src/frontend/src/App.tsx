@@ -47,6 +47,12 @@ export default function App() {
     setInstallPrompt(null);
   };
 
+  const handleShareWhatsApp = () => {
+    const cardUrl = window.location.href;
+    const message = `Hi! Check out my Digital Visiting Card 👇%0A${encodeURIComponent(cardUrl)}`;
+    window.open(`https://wa.me/?text=${message}`, "_blank");
+  };
+
   const btnStyle = (bg: string, textColor = "white") => ({
     display: "block",
     margin: "10px 0",
@@ -236,6 +242,28 @@ export default function App() {
           >
             🌐 Visit Website
           </a>
+
+          {/* Share via WhatsApp button */}
+          <button
+            type="button"
+            onClick={handleShareWhatsApp}
+            style={btnStyle("linear-gradient(45deg,#25D366,#075E54)")}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLButtonElement).style.transform =
+                "scale(1.05)";
+              (e.currentTarget as HTMLButtonElement).style.boxShadow =
+                "0 0 10px rgba(255,255,255,0.3)";
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLButtonElement).style.transform =
+                "scale(1)";
+              (e.currentTarget as HTMLButtonElement).style.boxShadow = "none";
+            }}
+          >
+            <span className="inline-flex items-center gap-2 justify-center w-full">
+              <SiWhatsapp size={16} /> Share this Card
+            </span>
+          </button>
 
           {/* Install App button */}
           {installPrompt && !installed && (
