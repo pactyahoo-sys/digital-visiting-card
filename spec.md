@@ -1,27 +1,27 @@
-# Digital Visiting Card - GitHub Pages Compatibility Fix
+# Digital Visiting Card — SEO Implementation
 
 ## Current State
-The app is a React/Vite PWA deployed on Caffeine (ICP) at root `/`. All asset paths use absolute URLs starting with `/`, which work fine at root but break when hosted under a subfolder like GitHub Pages' `/digital-visiting-card/` path.
+The app is a PWA digital visiting card for Nagarajan / InstaSite Kerala. It has a basic `<title>` tag, theme-color meta, and PWA manifest, but lacks SEO meta tags, structured data, sitemap, robots.txt, and semantic heading structure.
 
 ## Requested Changes (Diff)
 
 ### Add
-- `.github/workflows/deploy.yml`: GitHub Actions workflow that builds the app with `VITE_BASE_URL=/digital-visiting-card/` and deploys to GitHub Pages
-- `src/frontend/public/.nojekyll`: Empty file to disable Jekyll processing on GitHub Pages (required for files/folders starting with `_`)
+- Full SEO meta block in `index.html`: description, keywords (Thiruvananthapuram local SEO), Open Graph, Twitter Card, canonical, robots, geo meta tags
+- JSON-LD LocalBusiness structured data schema in `index.html` for Google rich results and local SEO
+- `public/sitemap.xml` — static sitemap referencing the live URL
+- `public/robots.txt` — allow all crawlers, reference sitemap
+- Semantic HTML heading elements (h1, h2) in App.tsx for proper heading structure
+- Improved alt tags on QR code image
 
 ### Modify
-- `src/frontend/vite.config.js`: Add `base: process.env.VITE_BASE_URL || '/'` so the build adapts to the deployment environment
-- `src/frontend/src/App.tsx`: Change hardcoded `/assets/uploads/...` profile image path to use `import.meta.env.BASE_URL` so it resolves correctly in both root and subfolder deployments
-- `src/frontend/public/manifest.json`: Change icon `src` and `start_url` to relative paths (no leading `/`) so they resolve correctly regardless of subfolder
-- `src/frontend/public/sw.js`: Use `self.registration.scope` for cache URLs so the service worker works correctly in both environments
+- `index.html` — expand `<head>` with full SEO meta tags and JSON-LD script
+- `src/App.tsx` — wrap name in `<h1>`, role/company in semantic elements, improve QR alt text
 
 ### Remove
 - Nothing removed
 
 ## Implementation Plan
-1. Update `vite.config.js` to read base from `VITE_BASE_URL` env var (defaults to `/` for Caffeine)
-2. Update `App.tsx` profile image src to use `import.meta.env.BASE_URL` prefix
-3. Update `manifest.json` to use relative paths for icons and start_url
-4. Update `sw.js` to use `self.registration.scope` instead of hardcoded `/`
-5. Add `.nojekyll` to public folder
-6. Add GitHub Actions workflow with correct build env and pages deployment
+1. Update `index.html` with full meta tag set + JSON-LD LocalBusiness schema
+2. Create `public/sitemap.xml` with the GitHub Pages URL
+3. Create `public/robots.txt`
+4. Update `App.tsx` to use semantic h1/h2 for name and title while preserving visual design

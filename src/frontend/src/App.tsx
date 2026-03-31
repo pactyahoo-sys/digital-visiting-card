@@ -98,9 +98,17 @@ export default function App() {
             boxShadow: "0 0 25px rgba(0,0,0,0.6)",
           }}
         >
-          <div style={{ fontSize: "20px", fontWeight: 600, color: "#00d4ff" }}>
+          <h3
+            style={{
+              fontSize: "20px",
+              fontWeight: 600,
+              color: "#00d4ff",
+              display: "block",
+              margin: 0,
+            }}
+          >
             InstaSite Kerala
-          </div>
+          </h3>
           <div
             style={{
               fontSize: "11px",
@@ -121,7 +129,7 @@ export default function App() {
 
           <img
             src={profileSrc}
-            alt="Nagarajan"
+            alt="Nagarajan, Sales Officer at InstaSite Kerala, Thiruvananthapuram"
             style={{
               width: "90px",
               height: "90px",
@@ -133,15 +141,28 @@ export default function App() {
             }}
           />
 
-          <div style={{ fontSize: "26px", color: "gold", fontWeight: "bold" }}>
+          <h1
+            style={{
+              fontSize: "26px",
+              color: "gold",
+              fontWeight: "bold",
+              margin: 0,
+            }}
+          >
             Nagarajan
-          </div>
+          </h1>
 
-          <div
-            style={{ fontSize: "14px", marginBottom: "15px", color: "white" }}
+          <h2
+            style={{
+              fontSize: "14px",
+              marginBottom: "15px",
+              color: "white",
+              fontWeight: 400,
+              margin: "0 0 15px",
+            }}
           >
             Sales Officer
-          </div>
+          </h2>
 
           <div
             style={{
@@ -328,7 +349,7 @@ export default function App() {
               >
                 <img
                   src={QR_URL}
-                  alt="QR Code"
+                  alt="QR code to save Nagarajan contact - InstaSite Kerala Thiruvananthapuram"
                   width={200}
                   height={200}
                   style={{ display: "block" }}

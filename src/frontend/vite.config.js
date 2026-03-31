@@ -13,7 +13,6 @@ process.env.STORAGE_GATEWAY_URL =
   process.env.STORAGE_GATEWAY_URL || "https://blob.caffeine.ai";
 
 export default defineConfig({
-  base: process.env.VITE_BASE_URL || "/",
   logLevel: "error",
   build: {
     emptyOutDir: true,
