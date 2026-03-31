@@ -103,6 +103,18 @@ export default function App() {
             InstaSite Kerala
           </div>
           <div
+            style={{
+              fontSize: "11px",
+              color: "#00d4ff",
+              opacity: 0.75,
+              letterSpacing: "0.5px",
+              marginBottom: "4px",
+              fontWeight: 500,
+            }}
+          >
+            Premium Digital Business Cards &amp; Websites
+          </div>
+          <div
             style={{ fontSize: "12px", color: "#ccc", marginBottom: "15px" }}
           >
             Build. Launch. Grow.
