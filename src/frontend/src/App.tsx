@@ -1,7 +1,7 @@
 import { Skeleton } from "@/components/ui/skeleton";
 import { Toaster } from "@/components/ui/sonner";
 import { HttpAgent } from "@icp-sdk/core/agent";
-import { Edit, Loader2, LogOut, Upload, X } from "lucide-react";
+import { Loader2, LogOut, Upload, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
@@ -303,7 +303,7 @@ export default function App() {
   const [card, setCard] = useState<Card | null>(null);
   const [loading, setLoading] = useState(true);
   const [showAdmin, setShowAdmin] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [_isAdmin, setIsAdmin] = useState(false);
   const [checkingAdmin, setCheckingAdmin] = useState(false);
 
   const { login, isLoggingIn, identity } = useInternetIdentity();
@@ -643,25 +643,6 @@ export default function App() {
           </motion.div>
         )}
       </main>
-
-      {/* Floating Edit Card button (admin only) */}
-      <AnimatePresence>
-        {isAdmin && !showAdmin && (
-          <motion.button
-            type="button"
-            onClick={() => setShowAdmin(true)}
-            className="floating-edit-btn"
-            data-ocid="admin.edit_button"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Edit size={14} />
-            Edit Card
-          </motion.button>
-        )}
-      </AnimatePresence>
 
       {/* Admin Panel */}
       <AnimatePresence>
