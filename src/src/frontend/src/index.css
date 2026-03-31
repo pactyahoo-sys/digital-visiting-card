@@ -1,0 +1,163 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Bricolage Grotesque";
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url("/assets/fonts/BricolageGrotesque.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "General Sans";
+  font-style: normal;
+  font-weight: 200 700;
+  font-display: swap;
+  src: url("/assets/fonts/GeneralSans.woff2") format("woff2");
+}
+
+@layer base {
+  :root {
+    --radius: 0.75rem;
+
+    /* Light professional navy blue theme */
+    --background: 0.98 0.005 255;
+    --foreground: 0.15 0.025 255;
+
+    --card: 1 0 0;
+    --card-foreground: 0.15 0.025 255;
+
+    --popover: 1 0 0;
+    --popover-foreground: 0.15 0.025 255;
+
+    /* Deep navy blue */
+    --primary: 0.3 0.165 255;
+    --primary-foreground: 0.97 0.008 255;
+
+    /* Warm amber for accent CTAs */
+    --secondary: 0.76 0.17 76;
+    --secondary-foreground: 0.12 0.02 76;
+
+    --muted: 0.94 0.012 255;
+    --muted-foreground: 0.46 0.045 255;
+
+    --accent: 0.5 0.13 255;
+    --accent-foreground: 0.97 0.008 255;
+
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 0.985 0 0;
+
+    --border: 0.88 0.018 255;
+    --input: 0.88 0.018 255;
+    --ring: 0.3 0.165 255;
+
+    --chart-1: 0.3 0.165 255;
+    --chart-2: 0.5 0.13 255;
+    --chart-3: 0.76 0.17 76;
+    --chart-4: 0.65 0.14 255;
+    --chart-5: 0.46 0.1 255;
+
+    --sidebar: 0.94 0.012 255;
+    --sidebar-foreground: 0.15 0.025 255;
+    --sidebar-primary: 0.3 0.165 255;
+    --sidebar-primary-foreground: 0.97 0.008 255;
+    --sidebar-accent: 0.9 0.015 255;
+    --sidebar-accent-foreground: 0.15 0.025 255;
+    --sidebar-border: 0.88 0.018 255;
+    --sidebar-ring: 0.3 0.165 255;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "General Sans", system-ui, sans-serif;
+    min-height: 100vh;
+  }
+
+  html {
+    color-scheme: light;
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .hero-gradient {
+    background: linear-gradient(
+      135deg,
+      oklch(0.22 0.165 255) 0%,
+      oklch(0.3 0.165 255) 60%,
+      oklch(0.38 0.155 255) 100%
+    );
+  }
+
+  .cta-call {
+    @apply inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-semibold text-base transition-all duration-200;
+    background: oklch(1 0 0);
+    color: oklch(0.22 0.165 255);
+    box-shadow: 0 4px 14px oklch(0 0 0 / 0.2);
+  }
+  .cta-call:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px oklch(0 0 0 / 0.25);
+  }
+  .cta-call:active {
+    transform: translateY(0);
+  }
+
+  .cta-whatsapp {
+    @apply inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-semibold text-base transition-all duration-200;
+    background: oklch(0.62 0.21 150);
+    color: oklch(1 0 0);
+    box-shadow: 0 4px 14px oklch(0.62 0.21 150 / 0.35);
+  }
+  .cta-whatsapp:hover {
+    transform: translateY(-2px);
+    background: oklch(0.55 0.2 150);
+    box-shadow: 0 8px 20px oklch(0.62 0.21 150 / 0.45);
+  }
+  .cta-whatsapp:active {
+    transform: translateY(0);
+  }
+
+  .service-card {
+    @apply bg-card rounded-2xl p-6 border border-border;
+    box-shadow: 0 2px 12px oklch(0 0 0 / 0.06);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .service-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 28px oklch(0 0 0 / 0.1);
+  }
+
+  .reason-card {
+    @apply flex items-start gap-4 bg-card rounded-xl p-5 border border-border;
+    box-shadow: 0 1px 6px oklch(0 0 0 / 0.05);
+  }
+
+  .contact-btn-call {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-200 w-full;
+    background: oklch(0.3 0.165 255);
+    color: oklch(0.97 0.008 255);
+    box-shadow: 0 3px 10px oklch(0.3 0.165 255 / 0.3);
+  }
+  .contact-btn-call:hover {
+    background: oklch(0.25 0.165 255);
+    transform: translateY(-1px);
+  }
+
+  .contact-btn-whatsapp {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-200 w-full;
+    background: oklch(0.62 0.21 150);
+    color: oklch(1 0 0);
+    box-shadow: 0 3px 10px oklch(0.62 0.21 150 / 0.3);
+  }
+  .contact-btn-whatsapp:hover {
+    background: oklch(0.55 0.2 150);
+    transform: translateY(-1px);
+  }
+}

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pactyahoo-sys.github.io/digital-visiting-card/sitemap.xml

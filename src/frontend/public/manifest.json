@@ -1,11 +1,11 @@
 {
-  "name": "Nagarajan | InstaSite Kerala",
-  "short_name": "Nagarajan Card",
+  "name": "Nagarajan - InstaSite Kerala",
+  "short_name": "Nagarajan",
   "description": "Digital visiting card for Nagarajan, Sales Officer at InstaSite Kerala",
   "start_url": ".",
   "display": "standalone",
-  "background_color": "#0f2027",
-  "theme_color": "#00d4ff",
+  "background_color": "#110a1f",
+  "theme_color": "#6c3fc8",
   "orientation": "portrait",
   "icons": [
     {

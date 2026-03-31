@@ -1,384 +1,287 @@
-import { Toaster } from "@/components/ui/sonner";
-import { motion } from "motion/react";
-import { useEffect, useState } from "react";
-import { SiWhatsapp } from "react-icons/si";
+import { AnimatePresence, motion } from "motion/react";
+import { useState } from "react";
 
-const VCF_CONTENT = [
-  "BEGIN:VCARD",
-  "VERSION:3.0",
-  "FN:Nagarajan",
-  "ORG:InstaSite Kerala",
-  "TITLE:Sales Officer",
-  "TEL:+918838510443",
-  "EMAIL:cynorlux@gmail.com",
-  "ADR:;;Puliarakonnam Moonnammoodu Road;Thiruvananthapuram;;;India",
-  "URL:https://instasite.in",
-  "END:VCARD",
-].join("\n");
+const VCARD = `BEGIN:VCARD
+VERSION:3.0
+FN:Nagarajan
+N:Nagarajan;;;;
+ORG:InstaSite Kerala
+TITLE:Sales Officer
+TEL;TYPE=CELL:+918838510443
+EMAIL:cynorlux@gmail.com
+URL:https://instasite.in
+END:VCARD`;
 
-const QR_URL = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(VCF_CONTENT)}`;
+const PROFILE_IMG = `${import.meta.env.BASE_URL}assets/uploads/file_00000000a268720b8d35c42ca2dd4768-019d356b-0113-7442-b1d1-e9afa2b638a9-1.png`;
+
+function saveContact() {
+  const blob = new Blob([VCARD], { type: "text/vcard" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "Nagarajan-InstaSiteKerala.vcf";
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+async function shareCard() {
+  const shareData = {
+    title: "Nagarajan | InstaSite Kerala",
+    text: "Premium Digital Business Cards & Websites — Nagarajan, Sales Officer at InstaSite Kerala",
+    url: window.location.href,
+  };
+  if (navigator.share) {
+    try {
+      await navigator.share(shareData);
+    } catch {
+      // user cancelled
+    }
+  } else {
+    const msg = encodeURIComponent(`${shareData.text}\n${shareData.url}`);
+    window.open(`https://wa.me/?text=${msg}`, "_blank", "noopener,noreferrer");
+  }
+}
 
 export default function App() {
-  const profileSrc = `${import.meta.env.BASE_URL}assets/uploads/file_00000000a268720b8d35c42ca2dd4768-019d356b-0113-7442-b1d1-e9afa2b638a9-1.png`;
-
-  const vcfBlob = new Blob([VCF_CONTENT], { type: "text/vcard" });
-  const vcfUrl = URL.createObjectURL(vcfBlob);
-
+  const year = new Date().getFullYear();
   const [showQR, setShowQR] = useState(false);
-  const [installPrompt, setInstallPrompt] = useState<any>(null);
-  const [installed, setInstalled] = useState(false);
-
-  useEffect(() => {
-    const handler = (e: any) => {
-      e.preventDefault();
-      setInstallPrompt(e);
-    };
-    window.addEventListener("beforeinstallprompt", handler);
-    window.addEventListener("appinstalled", () => setInstalled(true));
-    return () => window.removeEventListener("beforeinstallprompt", handler);
-  }, []);
-
-  const handleInstall = async () => {
-    if (!installPrompt) return;
-    installPrompt.prompt();
-    const { outcome } = await installPrompt.userChoice;
-    if (outcome === "accepted") setInstalled(true);
-    setInstallPrompt(null);
-  };
-
-  const handleShareWhatsApp = () => {
-    const cardUrl = window.location.href;
-    const message = `Hi! Check out my Digital Visiting Card 👇%0A${encodeURIComponent(cardUrl)}`;
-    window.open(`https://wa.me/?text=${message}`, "_blank");
-  };
-
-  const btnStyle = (bg: string, textColor = "white") => ({
-    display: "block",
-    margin: "10px 0",
-    padding: "14px",
-    borderRadius: "12px",
-    textDecoration: "none",
-    color: textColor,
-    fontWeight: 500,
-    background: bg,
-    transition: "transform 0.3s, box-shadow 0.3s",
-    cursor: "pointer",
-    border: "none",
-    width: "100%",
-    fontSize: "14px",
-    textAlign: "center" as const,
-  });
 
   return (
-    <div
-      className="min-h-screen flex justify-center"
-      style={{
-        background: "linear-gradient(135deg,#0f2027,#203a43,#2c5364)",
-        fontFamily: "'Poppins', sans-serif",
-      }}
-    >
-      <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap"
-        rel="stylesheet"
-      />
-      <Toaster richColors position="top-center" />
+    <div className="card-page" data-ocid="card.page">
+      <div className="orb orb-1" />
+      <div className="orb orb-2" />
+      <div className="orb orb-3" />
 
-      <div className="w-full max-w-[380px] px-5 py-5">
+      <main className="card-wrapper">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: "easeInOut" }}
-          style={{
-            background: "rgba(255,255,255,0.05)",
-            borderRadius: "25px",
-            padding: "25px",
-            textAlign: "center",
-            backdropFilter: "blur(15px)",
-            WebkitBackdropFilter: "blur(15px)",
-            boxShadow: "0 0 25px rgba(0,0,0,0.6)",
-          }}
+          className="glass-card"
+          initial={{ opacity: 0, y: 32, scale: 0.96 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
         >
-          <h3
-            style={{
-              fontSize: "20px",
-              fontWeight: 600,
-              color: "#00d4ff",
-              display: "block",
-              margin: 0,
-            }}
+          {/* Brand Header */}
+          <motion.div
+            className="brand-header"
+            initial={{ opacity: 0, y: -12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1, duration: 0.45 }}
           >
-            InstaSite Kerala
-          </h3>
-          <div
-            style={{
-              fontSize: "11px",
-              color: "#00d4ff",
-              opacity: 0.75,
-              letterSpacing: "0.5px",
-              marginBottom: "4px",
-              fontWeight: 500,
-            }}
-          >
-            Premium Digital Business Cards &amp; Websites
-          </div>
-          <div
-            style={{ fontSize: "12px", color: "#ccc", marginBottom: "15px" }}
-          >
-            Build. Launch. Grow.
-          </div>
+            <h2 className="brand-title">InstaSite Kerala</h2>
+            <p className="brand-subtitle">
+              Premium Digital Business Cards &amp; Websites
+            </p>
+            <p className="brand-tagline">Build. Launch. Grow.</p>
+          </motion.div>
 
-          <img
-            src={profileSrc}
-            alt="Nagarajan, Sales Officer at InstaSite Kerala, Thiruvananthapuram"
-            style={{
-              width: "90px",
-              height: "90px",
-              borderRadius: "50%",
-              border: "3px solid #00d4ff",
-              margin: "10px auto",
-              display: "block",
-              objectFit: "cover",
-            }}
-          />
+          <div className="divider" />
 
-          <h1
-            style={{
-              fontSize: "26px",
-              color: "gold",
-              fontWeight: "bold",
-              margin: 0,
-            }}
+          {/* Profile Photo */}
+          <motion.div
+            className="profile-ring"
+            initial={{ scale: 0.6, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.5, ease: "backOut" }}
           >
-            Nagarajan
-          </h1>
+            <img
+              src={PROFILE_IMG}
+              alt="Nagarajan — Sales Officer, InstaSite Kerala"
+              className="profile-img"
+            />
+          </motion.div>
 
-          <h2
-            style={{
-              fontSize: "14px",
-              marginBottom: "15px",
-              color: "white",
-              fontWeight: 400,
-              margin: "0 0 15px",
-            }}
+          {/* Identity */}
+          <motion.div
+            className="identity"
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.45 }}
           >
-            Sales Officer
-          </h2>
+            <h1 className="name">Nagarajan</h1>
+            <p className="title">Sales Officer</p>
+          </motion.div>
 
-          <div
-            style={{
-              fontSize: "13px",
-              color: "#ccc",
-              marginBottom: "20px",
-              lineHeight: "1.8",
-            }}
+          {/* Contact Info */}
+          <motion.div
+            className="contact-info"
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.38, duration: 0.4 }}
           >
-            📞 +91 8838510443 <br />📧 cynorlux@gmail.com <br />📍
-            Thiruvananthapuram
-          </div>
+            <a
+              href="tel:+918838510443"
+              className="contact-row"
+              data-ocid="card.link"
+            >
+              <span className="contact-icon">📞</span>
+              <span>+91 8838510443</span>
+            </a>
+            <a
+              href="mailto:cynorlux@gmail.com"
+              className="contact-row"
+              data-ocid="card.link"
+            >
+              <span className="contact-icon">📧</span>
+              <span>cynorlux@gmail.com</span>
+            </a>
+            <div className="contact-row">
+              <span className="contact-icon">📍</span>
+              <span>Thiruvananthapuram</span>
+            </div>
+          </motion.div>
 
-          <a
-            href={vcfUrl}
-            download="Nagarajan.vcf"
-            style={btnStyle("linear-gradient(45deg,#f7971e,#ffd200)", "black")}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.transform =
-                "scale(1.05)";
-              (e.currentTarget as HTMLAnchorElement).style.boxShadow =
-                "0 0 10px rgba(255,255,255,0.3)";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.transform =
-                "scale(1)";
-              (e.currentTarget as HTMLAnchorElement).style.boxShadow = "none";
-            }}
+          <div className="divider" />
+
+          {/* Full-width action buttons */}
+          <motion.div
+            className="actions-list"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.44, duration: 0.4 }}
+            data-ocid="card.section"
           >
-            💾 Save Contact
-          </a>
-
-          <a
-            href="tel:+918838510443"
-            style={btnStyle("linear-gradient(45deg,#007bff,#00c6ff)")}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.transform =
-                "scale(1.05)";
-              (e.currentTarget as HTMLAnchorElement).style.boxShadow =
-                "0 0 10px rgba(255,255,255,0.3)";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.transform =
-                "scale(1)";
-              (e.currentTarget as HTMLAnchorElement).style.boxShadow = "none";
-            }}
-          >
-            📞 Call Now
-          </a>
-
-          <a
-            href="https://wa.me/918838510443?text=Hi%20I%20saw%20your%20digital%20card"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={btnStyle("linear-gradient(45deg,#25D366,#128C7E)")}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.transform =
-                "scale(1.05)";
-              (e.currentTarget as HTMLAnchorElement).style.boxShadow =
-                "0 0 10px rgba(255,255,255,0.3)";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.transform =
-                "scale(1)";
-              (e.currentTarget as HTMLAnchorElement).style.boxShadow = "none";
-            }}
-          >
-            <span className="inline-flex items-center gap-2 justify-center w-full">
-              <SiWhatsapp size={16} /> WhatsApp
-            </span>
-          </a>
-
-          <a
-            href="https://maps.google.com/?q=Puliarakonnam Moonnammoodu Road Trivandrum"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={btnStyle("linear-gradient(45deg,#ff512f,#dd2476)")}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.transform =
-                "scale(1.05)";
-              (e.currentTarget as HTMLAnchorElement).style.boxShadow =
-                "0 0 10px rgba(255,255,255,0.3)";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.transform =
-                "scale(1)";
-              (e.currentTarget as HTMLAnchorElement).style.boxShadow = "none";
-            }}
-          >
-            📍 Location
-          </a>
-
-          <a
-            href="https://instasite.in"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={btnStyle("linear-gradient(45deg,#6a11cb,#2575fc)")}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.transform =
-                "scale(1.05)";
-              (e.currentTarget as HTMLAnchorElement).style.boxShadow =
-                "0 0 10px rgba(255,255,255,0.3)";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.transform =
-                "scale(1)";
-              (e.currentTarget as HTMLAnchorElement).style.boxShadow = "none";
-            }}
-          >
-            🌐 Visit Website
-          </a>
-
-          {/* Share via WhatsApp button */}
-          <button
-            type="button"
-            onClick={handleShareWhatsApp}
-            style={btnStyle("linear-gradient(45deg,#25D366,#075E54)")}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLButtonElement).style.transform =
-                "scale(1.05)";
-              (e.currentTarget as HTMLButtonElement).style.boxShadow =
-                "0 0 10px rgba(255,255,255,0.3)";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLButtonElement).style.transform =
-                "scale(1)";
-              (e.currentTarget as HTMLButtonElement).style.boxShadow = "none";
-            }}
-          >
-            <span className="inline-flex items-center gap-2 justify-center w-full">
-              <SiWhatsapp size={16} /> Share this Card
-            </span>
-          </button>
-
-          {/* Install App button */}
-          {installPrompt && !installed && (
+            {/* Save Contact */}
             <motion.button
               type="button"
-              initial={{ opacity: 0, y: 8 }}
+              onClick={saveContact}
+              className="action-pill action-pill-amber"
+              data-ocid="card.save.button"
+              initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4 }}
-              onClick={handleInstall}
-              data-ocid="install.primary_button"
-              style={btnStyle("linear-gradient(45deg,#00b894,#00cec9)")}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLButtonElement).style.transform =
-                  "scale(1.05)";
-                (e.currentTarget as HTMLButtonElement).style.boxShadow =
-                  "0 0 10px rgba(255,255,255,0.3)";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLButtonElement).style.transform =
-                  "scale(1)";
-                (e.currentTarget as HTMLButtonElement).style.boxShadow = "none";
-              }}
+              transition={{ delay: 0.46 }}
+              whileTap={{ scale: 0.97 }}
             >
-              📲 Install App
+              <span className="pill-icon">💾</span>
+              <span>Save Contact</span>
             </motion.button>
-          )}
 
-          {/* QR Code section */}
-          <div style={{ marginTop: "20px" }}>
-            <button
+            {/* Call Now */}
+            <motion.a
+              href="tel:+918838510443"
+              className="action-pill action-pill-blue"
+              data-ocid="card.call.button"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              whileTap={{ scale: 0.97 }}
+            >
+              <span className="pill-icon">📞</span>
+              <span>Call Now</span>
+            </motion.a>
+
+            {/* WhatsApp */}
+            <motion.a
+              href="https://wa.me/918838510443"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="action-pill action-pill-green"
+              data-ocid="card.whatsapp.button"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.54 }}
+              whileTap={{ scale: 0.97 }}
+            >
+              <span className="pill-icon">💬</span>
+              <span>WhatsApp</span>
+            </motion.a>
+
+            {/* Location */}
+            <motion.a
+              href="https://maps.google.com/?q=Thiruvananthapuram,Kerala,India"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="action-pill action-pill-red"
+              data-ocid="card.location.button"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.58 }}
+              whileTap={{ scale: 0.97 }}
+            >
+              <span className="pill-icon">📍</span>
+              <span>Location</span>
+            </motion.a>
+
+            {/* Visit Website */}
+            <motion.a
+              href="https://instasite.in"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="action-pill action-pill-purple"
+              data-ocid="card.website.button"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.62 }}
+              whileTap={{ scale: 0.97 }}
+            >
+              <span className="pill-icon">🌐</span>
+              <span>Visit Website</span>
+            </motion.a>
+
+            {/* Share this Card */}
+            <motion.button
+              type="button"
+              onClick={shareCard}
+              className="action-pill action-pill-whatsapp"
+              data-ocid="card.share.button"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.66 }}
+              whileTap={{ scale: 0.97 }}
+            >
+              <span className="pill-icon">🔗</span>
+              <span>Share this Card</span>
+            </motion.button>
+
+            {/* Show QR Code toggle */}
+            <motion.button
               type="button"
               onClick={() => setShowQR((v) => !v)}
-              style={btnStyle("linear-gradient(45deg,#00d4ff,#007bff)")}
+              className="action-pill action-pill-cyan"
+              data-ocid="card.qr.button"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7 }}
+              whileTap={{ scale: 0.97 }}
             >
-              {showQR ? "🔼 Hide QR Code" : "📲 Show QR Code"}
-            </button>
+              <span className="pill-icon">📱</span>
+              <span>{showQR ? "Hide QR Code" : "Show QR Code"}</span>
+            </motion.button>
+          </motion.div>
 
+          {/* QR Code (toggle) */}
+          <AnimatePresence>
             {showQR && (
               <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
+                className="qr-section"
+                initial={{ opacity: 0, height: 0, marginTop: 0 }}
+                animate={{ opacity: 1, height: "auto", marginTop: 8 }}
+                exit={{ opacity: 0, height: 0, marginTop: 0 }}
                 transition={{ duration: 0.3 }}
-                style={{
-                  background: "white",
-                  borderRadius: "16px",
-                  padding: "16px",
-                  display: "inline-block",
-                  marginTop: "12px",
-                  boxShadow: "0 0 20px rgba(0,212,255,0.4)",
-                }}
+                data-ocid="card.panel"
               >
-                <img
-                  src={QR_URL}
-                  alt="QR code to save Nagarajan contact - InstaSite Kerala Thiruvananthapuram"
-                  width={200}
-                  height={200}
-                  style={{ display: "block" }}
-                />
-                <div
-                  style={{
-                    fontSize: "11px",
-                    color: "#555",
-                    marginTop: "8px",
-                    textAlign: "center",
-                  }}
-                >
-                  Scan to save contact
+                <p className="qr-label">Scan to Save Contact Instantly</p>
+                <div className="qr-box">
+                  <img
+                    src={`https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=${encodeURIComponent(VCARD)}&color=0b3d91&bgcolor=ffffff`}
+                    alt="QR Code to save Nagarajan contact"
+                    width={140}
+                    height={140}
+                    style={{ display: "block" }}
+                  />
                 </div>
               </motion.div>
             )}
-          </div>
+          </AnimatePresence>
 
-          <div
-            style={{
-              marginTop: "15px",
-              fontSize: "11px",
-              color: "#aaa",
-            }}
-          >
-            Get your digital card from InstaSite Kerala
-          </div>
+          <div className="divider" />
+
+          <footer className="card-footer">
+            <p className="footer-cta">
+              Get your digital card from InstaSite Kerala
+            </p>
+            <p>© {year} InstaSite Kerala | All Rights Reserved</p>
+          </footer>
         </motion.div>
-      </div>
+      </main>
     </div>
   );
 }
