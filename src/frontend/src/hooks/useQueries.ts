@@ -8,12 +8,10 @@ const NAGARAJAN_DEFAULT: Card = {
   company: "InstaSite Kerala",
   email: "cynorlux@gmail.com",
   phone: "+91 8838510443",
-  location:
-    "TC 34/1425, Puliarakonnam\u2013Moonnammoodu Road, Thiruvananthapuram",
-  website: "#",
-  linkedin: "",
-  twitter: "",
+  location: "Thiruvananthapuram, Kerala",
+  website: "https://instasite.in",
   bio: "Build. Launch. Grow.",
+  profilePhotoUrl: "",
 };
 
 export function useGetCard() {
@@ -22,7 +20,7 @@ export function useGetCard() {
     queryKey: ["card"],
     queryFn: async () => {
       if (!actor) return NAGARAJAN_DEFAULT;
-      return actor.getCard();
+      return actor.getPublicCard();
     },
     enabled: !isFetching,
   });

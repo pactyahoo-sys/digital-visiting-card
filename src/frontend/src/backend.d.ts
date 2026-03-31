@@ -7,10 +7,9 @@ export interface None {
     __kind__: "None";
 }
 export type Option<T> = Some<T> | None;
+export type UserRole = { __kind__: "admin" } | { __kind__: "user" } | { __kind__: "guest" };
 export interface Card {
     bio: string;
-    linkedin: string;
-    twitter: string;
     name: string;
     email: string;
     website: string;
@@ -18,8 +17,13 @@ export interface Card {
     jobTitle: string;
     phone: string;
     location: string;
+    profilePhotoUrl: string;
 }
 export interface backendInterface {
-    getCard(): Promise<Card>;
+    getPublicCard(): Promise<Card>;
     updateCard(card: Card): Promise<void>;
+    _initializeAccessControlWithSecret(secret: string): Promise<void>;
+    isCallerAdmin(): Promise<boolean>;
+    getCallerUserRole(): Promise<UserRole>;
+    assignCallerUserRole(user: Principal, role: UserRole): Promise<void>;
 }

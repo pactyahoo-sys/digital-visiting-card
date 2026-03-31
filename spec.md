@@ -1,27 +1,31 @@
-# Digital Visiting Card — SEO Implementation
+# InstaSite Kerala - Dynamic Digital Card
 
 ## Current State
-The app is a PWA digital visiting card for Nagarajan / InstaSite Kerala. It has a basic `<title>` tag, theme-color meta, and PWA manifest, but lacks SEO meta tags, structured data, sitemap, robots.txt, and semantic heading structure.
+The app is a static React component with all profile data hardcoded in App.tsx (name, title, phone, email, location, buttons, QR). The backend has a basic Card type but it is not wired to the frontend. There is no admin login and no way to edit the card without rebuilding.
 
 ## Requested Changes (Diff)
 
 ### Add
-- Full SEO meta block in `index.html`: description, keywords (Thiruvananthapuram local SEO), Open Graph, Twitter Card, canonical, robots, geo meta tags
-- JSON-LD LocalBusiness structured data schema in `index.html` for Google rich results and local SEO
-- `public/sitemap.xml` — static sitemap referencing the live URL
-- `public/robots.txt` — allow all crawlers, reference sitemap
-- Semantic HTML heading elements (h1, h2) in App.tsx for proper heading structure
-- Improved alt tags on QR code image
+- Admin login via Internet Identity (authorization component)
+- Admin panel: edit all card fields (name, title, company, bio, phone, email, location, website) and upload profile photo
+- Blob storage for profile photo (blob-storage component)
+- Public card view reads live data from the backend canister
+- Loading state while fetching card data
+- Admin-only floating Edit button on the public card
 
 ### Modify
-- `index.html` — expand `<head>` with full SEO meta tags and JSON-LD script
-- `src/App.tsx` — wrap name in `<h1>`, role/company in semantic elements, improve QR alt text
+- App.tsx: replace hardcoded data with live data fetched from the backend
+- Backend: store one card profile globally (admin-owned); support getPublicCard (anyone) and updateCard (admin only), plus profile photo blob URL
+- Profile image: loaded from blob storage URL instead of static asset
 
 ### Remove
-- Nothing removed
+- Hardcoded VCARD, PROFILE_IMG, and all static data constants in App.tsx
 
 ## Implementation Plan
-1. Update `index.html` with full meta tag set + JSON-LD LocalBusiness schema
-2. Create `public/sitemap.xml` with the GitHub Pages URL
-3. Create `public/robots.txt`
-4. Update `App.tsx` to use semantic h1/h2 for name and title while preserving visual design
+1. Select `authorization` and `blob-storage` Caffeine components
+2. Generate Motoko backend: stores one global card profile, admin-only updateCard, public getPublicCard, stores profilePhotoUrl text field
+3. Build frontend:
+   - PublicCard view (default): fetches card data from backend, renders existing glassmorphic layout with live data
+   - AdminPanel view: shown when admin is logged in, form to edit all fields + upload photo, save calls updateCard
+   - Floating Edit button visible only when admin is authenticated
+   - Logout button in admin panel
