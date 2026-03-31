@@ -11,7 +11,7 @@ import { useActor } from "./hooks/useActor";
 import { useInternetIdentity } from "./hooks/useInternetIdentity";
 import { StorageClient } from "./utils/StorageClient";
 
-const DEFAULT_PROFILE_IMG = `${import.meta.env.BASE_URL}assets/uploads/file_00000000a268720b8d35c42ca2dd4768-019d356b-0113-7442-b1d1-e9afa2b638a9-1.png`;
+const DEFAULT_PROFILE_IMG = `${import.meta.env.BASE_URL}assets/uploads/nagarajan-profile.png`;
 
 function buildVCard(card: Card): string {
   return `BEGIN:VCARD
