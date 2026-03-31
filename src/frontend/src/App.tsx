@@ -19,8 +19,7 @@ const VCF_CONTENT = [
 const QR_URL = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(VCF_CONTENT)}`;
 
 export default function App() {
-  const profileSrc =
-    "/assets/uploads/file_00000000a268720b8d35c42ca2dd4768-019d356b-0113-7442-b1d1-e9afa2b638a9-1.png";
+  const profileSrc = `${import.meta.env.BASE_URL}assets/uploads/file_00000000a268720b8d35c42ca2dd4768-019d356b-0113-7442-b1d1-e9afa2b638a9-1.png`;
 
   const vcfBlob = new Blob([VCF_CONTENT], { type: "text/vcard" });
   const vcfUrl = URL.createObjectURL(vcfBlob);

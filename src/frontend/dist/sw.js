@@ -1,7 +1,8 @@
-const CACHE_NAME = 'nagarajan-card-v1';
-const urlsToCache = ['/', '/index.html'];
+const CACHE_NAME = 'nagarajan-card-v2';
 
 self.addEventListener('install', (e) => {
+  const base = self.registration.scope;
+  const urlsToCache = [base, base + 'index.html'];
   e.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(urlsToCache)));
 });
 
