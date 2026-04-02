@@ -21,16 +21,19 @@ module {
     };
   };
 
-  // First principal that calls this function becomes admin, all other principals become users.
+  // If the correct admin token is provided, always grant admin role.
+  // This allows re-login from a new device or identity without being blocked.
   public func initialize(state : AccessControlState, caller : Principal, adminToken : Text, userProvidedToken : Text) {
     if (caller.isAnonymous()) { return };
-    switch (state.userRoles.get(caller)) {
-      case (?_) {};
-      case (null) {
-        if (not state.adminAssigned and userProvidedToken == adminToken) {
-          state.userRoles.add(caller, #admin);
-          state.adminAssigned := true;
-        } else {
+    if (userProvidedToken == adminToken) {
+      // Correct token always grants admin, overwriting any prior role
+      state.userRoles.add(caller, #admin);
+      state.adminAssigned := true;
+    } else {
+      // No valid token — register as user only if not already registered
+      switch (state.userRoles.get(caller)) {
+        case (?_) {};
+        case (null) {
           state.userRoles.add(caller, #user);
         };
       };
