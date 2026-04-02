@@ -8,8 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="dns-prefetch" href="https://ic0.app" />
     <link rel="dns-prefetch" href="https://api.qrserver.com" />
-    <link rel="preload" href="./assets/uploads/nagarajan-profile.png" as="image" fetchpriority="high" />
-    <link rel="preload" href="./assets/fonts/PlusJakartaSans.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="./assets/uploads/nagarajan-profile.png" as="image" fetchpriority="high" type="image/png" />
 
     <!-- Google Search Console Verification -->
     <meta name="google-site-verification" content="tpwdv290mMpLNTx3eDVTwtwriHrfaWf8AZQd0YKkLgQ" />
@@ -41,6 +40,14 @@
     <!-- PWA / Theme -->
     <meta name="theme-color" content="#6c3fc8" />
     <link rel="manifest" href="./manifest.json" />
+
+    <!-- Inline critical CSS for above-the-fold content to improve FCP -->
+    <style>
+      *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+      html{color-scheme:dark;scroll-behavior:smooth}
+      body{background:#0d0a1e;color:#f5f5f5;font-family:system-ui,sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center}
+      #root{width:100%;display:flex;align-items:center;justify-content:center;padding:1.5rem 1rem}
+    </style>
 
     <!-- JSON-LD Person Structured Data -->
     <script type="application/ld+json">
