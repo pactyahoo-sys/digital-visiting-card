@@ -17,7 +17,20 @@ export default defineConfig({
   build: {
     emptyOutDir: true,
     sourcemap: false,
-    minify: false,
+    minify: "esbuild",
+    target: "es2020",
+    cssMinify: true,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ["react", "react-dom"],
+        },
+      },
+    },
+  },
+  esbuild: {
+    drop: ["console", "debugger"],
+    legalComments: "none",
   },
   css: {
     postcss: "./postcss.config.js",

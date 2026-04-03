@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 
+Sitemap: https://digital-visiting-card-zh2.caffeine.xyz/sitemap.xml
 Sitemap: https://pactyahoo-sys.github.io/digital-visiting-card/sitemap.xml
