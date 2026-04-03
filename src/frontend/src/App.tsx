@@ -30,9 +30,10 @@ const FALLBACK_CARD: Card = {
 const t = {
   en: {
     brandName: "InstaSite Kerala",
-    tagline: "Kerala's #1 Digital Business Card Service",
-    buildLaunchGrow: "Build. Launch. Grow.",
-    happyClients: "500+ Happy Clients in Kerala",
+    tagline: "Kerala's Fastest Digital Business Cards",
+    buildLaunchGrow: "Ready in 30 Minutes. No Coding. No Hassle.",
+    happyClients: "500+ Kerala Businesses Trust Us",
+    trustedBadge: "✓ Trusted by 500+ Kerala Businesses",
     saveContact: "Save Contact",
     callNow: "Call Now",
     whatsapp: "WhatsApp",
@@ -49,14 +50,41 @@ const t = {
     yourName: "Your Name",
     phoneNumber: "Phone Number",
     message: "Message (optional)",
-    sendMessage: "Send via WhatsApp",
+    sendMessage: "Book Free Demo via WhatsApp",
     contactUs: "Contact Us",
-    whatsappCta: "Chat on WhatsApp",
-    footerCta: "Get your digital card from InstaSite Kerala",
+    whatsappCta: "Chat on WhatsApp – Get Free Card",
+    footerCta: "Create Your Free Website Now – No Coding Needed",
     adminLogin: "Admin Login",
     loggingIn: "Logging in...",
     salesOfficer: "Sales Officer",
     jobTitle: "Sales Officer",
+    navHome: "Home",
+    navServices: "Services",
+    navGallery: "Gallery",
+    navContact: "Contact",
+    liveDemoTitle: "See Live Examples",
+    liveDemoSubtitle: "Real cards built for Kerala businesses",
+    viewDemo: "View Demo",
+    testimonialsTitle: "What Our Clients Say",
+    whyChooseTitle: "Why Choose InstaSite Kerala",
+    pricingTitle: "Simple, Honest Pricing",
+    pricingSubtitle: "Start free — upgrade anytime",
+    freeTierName: "Free Trial",
+    freeTierPrice: "₹0",
+    freeTierDesc: "Try your digital card for 7 days free",
+    freeTierCta: "Start Free",
+    proTierName: "Pro",
+    proTierPrice: "₹999",
+    proTierPeriod: "/year",
+    proTierPopular: "Most Popular",
+    proTierDesc: "Digital Card + Website + QR Code + WhatsApp CTA + SEO",
+    proTierCta: "Get Pro",
+    bizTierName: "Business",
+    bizTierPrice: "₹1,999",
+    bizTierPeriod: "/year",
+    bizTierDesc:
+      "Everything in Pro + Gallery + Maps + Booking Form + Priority Support",
+    bizTierCta: "Get Business",
     galleryItems: [
       "Digital Card",
       "Business Website",
@@ -69,30 +97,90 @@ const t = {
       {
         icon: "📇",
         title: "Digital Business Cards",
-        desc: "Premium, shareable digital cards for professionals",
+        desc: "Get more clients — share your card via WhatsApp in one tap",
       },
       {
         icon: "🌐",
         title: "Business Websites",
-        desc: "Fast, mobile-first websites for Kerala businesses",
+        desc: "Rank on Google and get found by local Kerala customers",
       },
       {
         icon: "📱",
         title: "Social Media Branding",
-        desc: "Professional profiles and branded content",
+        desc: "Look professional on Instagram, Facebook, and WhatsApp",
       },
       {
         icon: "📈",
         title: "SEO & Marketing",
-        desc: "Get found on Google locally",
+        desc: "Be the first result when customers search your business in Kerala",
+      },
+    ],
+    testimonials: [
+      {
+        name: "Priya R.",
+        role: "Boutique Owner, Kochi",
+        text: "Got my digital card in 30 minutes. My customers love tapping to save my contact!",
+        stars: 5,
+      },
+      {
+        name: "Suresh M.",
+        role: "Real Estate Agent, Trivandrum",
+        text: "Best investment for my business. Clients find me on Google now thanks to the SEO setup.",
+        stars: 5,
+      },
+      {
+        name: "Anitha K.",
+        role: "Salon Owner, Kozhikode",
+        text: "The WhatsApp button alone doubled my bookings. Totally worth it!",
+        stars: 5,
+      },
+    ],
+    whyChoose: [
+      {
+        icon: "⚡",
+        title: "Ready in 30 Minutes",
+        desc: "Your digital card goes live the same day, no waiting",
+      },
+      {
+        icon: "📱",
+        title: "Works on Any Phone",
+        desc: "Share via WhatsApp, SMS, or QR — no app download needed",
+      },
+      {
+        icon: "🔍",
+        title: "Google-Ready SEO",
+        desc: "Built-in SEO so local customers find you on Google search",
+      },
+      {
+        icon: "🛡️",
+        title: "Lifetime Free Updates",
+        desc: "We update your card whenever you need, no extra charge",
+      },
+    ],
+    demoPreviews: [
+      {
+        label: "Doctor Card",
+        sub: "Dr. Ramesh Kumar",
+        gradient: "linear-gradient(135deg, #0b3d91 0%, #00e5ff 100%)",
+      },
+      {
+        label: "Shop Owner",
+        sub: "Anand Textiles",
+        gradient: "linear-gradient(135deg, #7c3aed 0%, #f97316 100%)",
+      },
+      {
+        label: "Freelancer",
+        sub: "Priya Designs",
+        gradient: "linear-gradient(135deg, #0d7849 0%, #22c55e 100%)",
       },
     ],
   },
   ml: {
     brandName: "ഇൻസ്റ്റ സൈറ്റ് കേരള",
-    tagline: "കേരളത്തിലെ #1 ഡിജിറ്റൽ ബിസിനസ് കാർഡ് സേവനം",
-    buildLaunchGrow: "നിർമ്മിക്കൂ. ആരംഭിക്കൂ. വളരൂ.",
-    happyClients: "500+ സന്തുഷ്ട ക്ലയൻ്റുകൾ",
+    tagline: "കേരളത്തിലെ ഏറ്റവും വേഗമേറിയ ഡിജിറ്റൽ ബിസിനസ് കാർഡ്",
+    buildLaunchGrow: "30 മിനിറ്റിൽ തയ്യാർ. കോഡിംഗ് ഇല്ല. ഝടുതിയില്ല.",
+    happyClients: "500+ കേരള ബിസിനസുകൾ ഞങ്ങളിൽ വിശ്വസിക്കുന്നു",
+    trustedBadge: "✓ 500+ കേരള ബിസിനസുകൾ വിശ്വസിക്കുന്നു",
     saveContact: "കോൺടാക്ട് സേവ് ചെയ്യുക",
     callNow: "ഇപ്പോൾ വിളിക്കൂ",
     whatsapp: "വാട്സ്ആപ്പ്",
@@ -109,14 +197,40 @@ const t = {
     yourName: "നിങ്ങളുടെ പേര്",
     phoneNumber: "ഫോൺ നമ്പർ",
     message: "സന്ദേശം (ഐച്ഛികം)",
-    sendMessage: "വാട്സ്ആപ്പ് വഴി അയക്കൂ",
+    sendMessage: "WhatsApp വഴി ഡെമോ ബുക്ക് ചെയ്യൂ",
     contactUs: "ഞങ്ങളെ ബന്ധപ്പെടൂ",
-    whatsappCta: "വാട്സ്ആപ്പിൽ ചാറ്റ് ചെയ്യൂ",
-    footerCta: "InstaSite Kerala-ൽ നിന്ന് നിങ്ങളുടെ ഡിജിറ്റൽ കാർഡ് നേടൂ",
+    whatsappCta: "WhatsApp-ൽ ചാറ്റ് ചെയ്യൂ – സൗജന്യ കാർഡ് നേടൂ",
+    footerCta: "ഇപ്പോൾ നിങ്ങളുടെ സൗജന്യ വെബ്സൈറ്റ് ഉണ്ടാക്കൂ – കോഡിംഗ് ആവശ്യമില്ല",
     adminLogin: "അഡ്മിൻ ലോഗിൻ",
     loggingIn: "ലോഗിൻ ചെയ്യുന്നു...",
     salesOfficer: "സെയിൽസ് ഓഫീസർ",
     jobTitle: "സെയിൽസ് ഓഫീസർ",
+    navHome: "ഹോം",
+    navServices: "സേവനങ്ങൾ",
+    navGallery: "ഗാലറി",
+    navContact: "ബന്ധപ്പെടൂ",
+    liveDemoTitle: "ലൈവ് ഉദാഹരണങ്ങൾ കാണൂ",
+    liveDemoSubtitle: "കേരള ബിസിനസുകൾക്കായി നിർമ്മിച്ച യഥാർത്ഥ കാർഡുകൾ",
+    viewDemo: "ഡെമോ കാണൂ",
+    testimonialsTitle: "ക്ലയൻ്റുകൾ പറയുന്നത്",
+    whyChooseTitle: "InstaSite Kerala തിരഞ്ഞെടുക്കാൻ കാരണം",
+    pricingTitle: "ലളിതമായ, സത്യസന്ധമായ വില",
+    pricingSubtitle: "സൗജന്യമായി ആരംഭിക്കൂ — എപ്പോൾ വേണമെങ്കിലും അപ്‌ഗ്രേഡ് ചെയ്യൂ",
+    freeTierName: "ഫ്രീ ട്രയൽ",
+    freeTierPrice: "₹0",
+    freeTierDesc: "7 ദിവസം സൗജന്യമായി ട്രൈ ചെയ്യൂ",
+    freeTierCta: "ഫ്രീ ആരംഭിക്കൂ",
+    proTierName: "പ്രോ",
+    proTierPrice: "₹999",
+    proTierPeriod: "/വർഷം",
+    proTierPopular: "ഏറ്റവും ജനപ്രിയം",
+    proTierDesc: "ഡിജിറ്റൽ കാർഡ് + വെബ്സൈറ്റ് + QR കോഡ് + WhatsApp CTA + SEO",
+    proTierCta: "പ്രോ നേടൂ",
+    bizTierName: "ബിസിനസ്",
+    bizTierPrice: "₹1,999",
+    bizTierPeriod: "/വർഷം",
+    bizTierDesc: "Pro-ൽ ഉള്ളതെല്ലാം + ഗാലറി + Maps + ബുക്കിംഗ് ഫോം + Priority Support",
+    bizTierCta: "ബിസിനസ് നേടൂ",
     galleryItems: [
       "ഡിജിറ്റൽ കാർഡ്",
       "ബിസിനസ് വെബ്സൈറ്റ്",
@@ -129,24 +243,88 @@ const t = {
       {
         icon: "📇",
         title: "ഡിജിറ്റൽ ബിസിനസ് കാർഡുകൾ",
-        desc: "പ്രൊഫഷണലുകൾക്കായി പ്രീമിയം ഡിജിറ്റൽ കാർഡുകൾ",
+        desc: "WhatsApp-ൽ ഒറ്റ ടാപ്പിൽ കാർഡ് ഷെയർ ചെയ്ത് കൂടുതൽ ക്ലയൻ്റുകളെ നേടൂ",
       },
       {
         icon: "🌐",
         title: "ബിസിനസ് വെബ്സൈറ്റുകൾ",
-        desc: "കേരള ബിസിനസുകൾക്കായി വേഗമേറിയ വെബ്സൈറ്റുകൾ",
+        desc: "Google-ൽ റാങ്ക് ചെയ്ത് കേരളത്തിലെ ലോക്കൽ കസ്റ്റമേഴ്‌സിനെ ആകർഷിക്കൂ",
       },
       {
         icon: "📱",
         title: "സോഷ്യൽ മീഡിയ ബ്രാൻഡിംഗ്",
-        desc: "പ്രൊഫഷണൽ പ്രൊഫൈലുകളും ബ്രാൻഡഡ് കൺടൻ്റും",
+        desc: "Instagram, Facebook, WhatsApp-ൽ പ്രൊഫഷണലായി കാണപ്പെടൂ",
       },
-      { icon: "📈", title: "SEO & മാർക്കറ്റിംഗ്", desc: "Google-ൽ ലോക്കലി കാണപ്പെടൂ" },
+      {
+        icon: "📈",
+        title: "SEO & മാർക്കറ്റിംഗ്",
+        desc: "കേരളത്തിൽ നിങ്ങളുടെ ബിസിനസ് തിരയുമ്പോൾ ആദ്യ ഫലമായി കാണപ്പെടൂ",
+      },
+    ],
+    testimonials: [
+      {
+        name: "പ്രിയ ആർ.",
+        role: "ബൂട്ടിക് ഉടമ, കൊച്ചി",
+        text: "30 മിനിറ്റിൽ ഡിജിറ്റൽ കാർഡ് കിട്ടി. ഉപഭോക്താക്കൾ ടാപ്പ് ചെയ്ത് കോൺടാക്ട് സേവ് ചെയ്യുന്നു!",
+        stars: 5,
+      },
+      {
+        name: "സുരേഷ് എം.",
+        role: "റിയൽ എസ്റ്റേറ്റ് ഏജൻ്റ്, തിരുവനന്തപുരം",
+        text: "ബിസിനസിനുള്ള ഏറ്റവും നല്ല നിക്ഷേപം. SEO കൊണ്ട് ക്ലയൻ്റുകൾ Google-ൽ കണ്ടെത്തുന്നു.",
+        stars: 5,
+      },
+      {
+        name: "അനിത കെ.",
+        role: "സലൂൺ ഉടമ, കോഴിക്കോട്",
+        text: "WhatsApp ബട്ടൺ ഒറ്റയ്ക്ക് ബുക്കിംഗ് ഇരട്ടിയാക്കി. തീർച്ചയായും ഇത് വേണം!",
+        stars: 5,
+      },
+    ],
+    whyChoose: [
+      {
+        icon: "⚡",
+        title: "30 മിനിറ്റിൽ തയ്യാർ",
+        desc: "അതേ ദിവസം തന്നെ ഡിജിറ്റൽ കാർഡ് ലൈവ്, കാത്തിരിക്കൽ ഇല്ല",
+      },
+      {
+        icon: "📱",
+        title: "ഏത് ഫോണിലും പ്രവർത്തിക്കും",
+        desc: "WhatsApp, SMS, QR വഴി ഷെയർ ചെയ്യൂ — ആപ്പ് ഡൗൺലോഡ് ആവശ്യമില്ല",
+      },
+      {
+        icon: "🔍",
+        title: "Google SEO ഉൾക്കൊള്ളിച്ചത്",
+        desc: "ലോക്കൽ ഉപഭോക്താക്കൾ Google-ൽ നിങ്ങളെ കണ്ടെത്തുന്നു",
+      },
+      {
+        icon: "🛡️",
+        title: "ലൈഫ്ടൈം ഫ്രീ അപ്‌ഡേറ്റ്സ്",
+        desc: "ആവശ്യമുള്ളപ്പോഴെല്ലാം കാർഡ് അപ്ഡേറ്റ് ചെയ്യും, അധിക ചാർജ് ഇല്ല",
+      },
+    ],
+    demoPreviews: [
+      {
+        label: "ഡോക്ടർ കാർഡ്",
+        sub: "ഡോ. രാമേഷ് കുമാർ",
+        gradient: "linear-gradient(135deg, #0b3d91 0%, #00e5ff 100%)",
+      },
+      {
+        label: "ഷോപ്പ് ഉടമ",
+        sub: "ആനന്ദ് ടെക്‌സ്‌റ്റൈൽസ്",
+        gradient: "linear-gradient(135deg, #7c3aed 0%, #f97316 100%)",
+      },
+      {
+        label: "ഫ്രീലാൻസർ",
+        sub: "പ്രിയ ഡിസൈൻസ്",
+        gradient: "linear-gradient(135deg, #0d7849 0%, #22c55e 100%)",
+      },
     ],
   },
-} as const;
+};
 
 type Lang = "en" | "ml";
+type Translations = typeof t.en;
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
 function getSafeWebsiteUrl(website: string): string {
@@ -219,6 +397,230 @@ function SectionHeader({ title }: { title: string }) {
       <div className="section-accent" />
       <h2 className="section-title">{title}</h2>
     </div>
+  );
+}
+
+// ── Navigation Bar ────────────────────────────────────────────────────────────
+function NavBar({ txt }: { txt: Translations }) {
+  function scrollTo(id: string) {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  return (
+    <nav
+      className="nav-bar"
+      data-ocid="nav.section"
+      aria-label="Main navigation"
+    >
+      <button
+        type="button"
+        className="nav-item"
+        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        data-ocid="nav.home.link"
+      >
+        <span className="nav-icon">🏠</span>
+        <span className="nav-label">{txt.navHome}</span>
+      </button>
+      <button
+        type="button"
+        className="nav-item"
+        onClick={() => scrollTo("services-section")}
+        data-ocid="nav.services.link"
+      >
+        <span className="nav-icon">⚙️</span>
+        <span className="nav-label">{txt.navServices}</span>
+      </button>
+      <button
+        type="button"
+        className="nav-item"
+        onClick={() => scrollTo("gallery-section")}
+        data-ocid="nav.gallery.link"
+      >
+        <span className="nav-icon">🖼️</span>
+        <span className="nav-label">{txt.navGallery}</span>
+      </button>
+      <button
+        type="button"
+        className="nav-item"
+        onClick={() => scrollTo("contact-section")}
+        data-ocid="nav.contact.link"
+      >
+        <span className="nav-icon">📞</span>
+        <span className="nav-label">{txt.navContact}</span>
+      </button>
+    </nav>
+  );
+}
+
+// ── Live Demo Previews ────────────────────────────────────────────────────────
+function LiveDemoSection({ txt }: { txt: Translations }) {
+  return (
+    <section className="live-demo-section" data-ocid="demo.section">
+      <div className="demo-header">
+        <p className="demo-title">{txt.liveDemoTitle}</p>
+        <p className="demo-subtitle">{txt.liveDemoSubtitle}</p>
+      </div>
+      <div className="demo-cards-row">
+        {txt.demoPreviews.map((demo, i) => (
+          <a
+            key={demo.label}
+            href={EXTERNAL_WEBSITE}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="demo-mini-card"
+            style={{ background: demo.gradient }}
+            data-ocid={`demo.item.${i + 1}` as any}
+          >
+            <span className="demo-badge">{txt.viewDemo}</span>
+            <div className="demo-card-inner">
+              <div className="demo-avatar" />
+              <span className="demo-card-label">{demo.label}</span>
+              <span className="demo-card-sub">{demo.sub}</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+// ── Testimonials ─────────────────────────────────────────────────────────────
+function TestimonialsSection({ txt }: { txt: Translations }) {
+  return (
+    <section className="card-section" data-ocid="testimonials.section">
+      <SectionHeader title={txt.testimonialsTitle} />
+      <div className="testimonials-list">
+        {txt.testimonials.map((item, i) => (
+          <div
+            key={item.name}
+            className="testimonial-card"
+            data-ocid={`testimonials.item.${i + 1}` as any}
+          >
+            <div className="testimonial-stars">
+              {Array.from({ length: item.stars }).map((_, si) => (
+                // biome-ignore lint/suspicious/noArrayIndexKey: static star count
+                <span key={si} className="testimonial-star">
+                  ★
+                </span>
+              ))}
+            </div>
+            <p className="testimonial-text">"{item.text}"</p>
+            <div className="testimonial-author">
+              <span className="testimonial-name">{item.name}</span>
+              <span className="testimonial-role">{item.role}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+// ── Why Choose Us ─────────────────────────────────────────────────────────────
+function WhyChooseUsSection({ txt }: { txt: Translations }) {
+  return (
+    <section className="card-section" data-ocid="whychoose.section">
+      <SectionHeader title={txt.whyChooseTitle} />
+      <div className="why-choose-grid">
+        {txt.whyChoose.map((item, i) => (
+          <div
+            key={item.title}
+            className="why-choose-card"
+            data-ocid={`whychoose.item.${i + 1}` as any}
+          >
+            <span className="why-choose-icon">{item.icon}</span>
+            <div className="why-choose-body">
+              <h3 className="why-choose-title">{item.title}</h3>
+              <p className="why-choose-desc">{item.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+// ── Pricing ──────────────────────────────────────────────────────────────────
+function PricingSection({ txt }: { txt: Translations }) {
+  const freeMsg = encodeURIComponent(
+    "Hi, I want to start my Free 7-day Trial for a digital card!",
+  );
+  const proMsg = encodeURIComponent(
+    "Hi, I'm interested in the Pro plan (₹999/year) for my digital card.",
+  );
+  const bizMsg = encodeURIComponent(
+    "Hi, I'm interested in the Business plan (₹1,999/year) for my digital card.",
+  );
+
+  return (
+    <section className="card-section" data-ocid="pricing.section">
+      <SectionHeader title={txt.pricingTitle} />
+      <p className="pricing-subtitle">{txt.pricingSubtitle}</p>
+
+      {/* Free Tier */}
+      <div className="pricing-card" data-ocid="pricing.item.1">
+        <div className="pricing-top">
+          <span className="pricing-tier-name">{txt.freeTierName}</span>
+          <div className="pricing-price-row">
+            <span className="pricing-price">{txt.freeTierPrice}</span>
+          </div>
+        </div>
+        <p className="pricing-desc">{txt.freeTierDesc}</p>
+        <a
+          href={`https://wa.me/918838510443?text=${freeMsg}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="pricing-cta pricing-cta-free"
+          data-ocid="pricing.free.primary_button"
+        >
+          {txt.freeTierCta}
+        </a>
+      </div>
+
+      {/* Pro Tier – highlighted */}
+      <div className="pricing-card pricing-card-pro" data-ocid="pricing.item.2">
+        <div className="pricing-popular-badge">{txt.proTierPopular}</div>
+        <div className="pricing-top">
+          <span className="pricing-tier-name">{txt.proTierName}</span>
+          <div className="pricing-price-row">
+            <span className="pricing-price">{txt.proTierPrice}</span>
+            <span className="pricing-period">{txt.proTierPeriod}</span>
+          </div>
+        </div>
+        <p className="pricing-desc">{txt.proTierDesc}</p>
+        <a
+          href={`https://wa.me/918838510443?text=${proMsg}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="pricing-cta pricing-cta-pro"
+          data-ocid="pricing.pro.primary_button"
+        >
+          {txt.proTierCta}
+        </a>
+      </div>
+
+      {/* Business Tier */}
+      <div className="pricing-card" data-ocid="pricing.item.3">
+        <div className="pricing-top">
+          <span className="pricing-tier-name">{txt.bizTierName}</span>
+          <div className="pricing-price-row">
+            <span className="pricing-price">{txt.bizTierPrice}</span>
+            <span className="pricing-period">{txt.bizTierPeriod}</span>
+          </div>
+        </div>
+        <p className="pricing-desc">{txt.bizTierDesc}</p>
+        <a
+          href={`https://wa.me/918838510443?text=${bizMsg}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="pricing-cta pricing-cta-biz"
+          data-ocid="pricing.biz.primary_button"
+        >
+          {txt.bizTierCta}
+        </a>
+      </div>
+    </section>
   );
 }
 
@@ -345,18 +747,32 @@ export default function App() {
         <span className={lang === "ml" ? "lang-active" : ""}>ML</span>
       </button>
 
+      {/* Navigation Bar */}
+      <NavBar txt={txt} />
+
       <main className="card-wrapper">
         <div className="glass-card fade-in-card">
           {/* ── Hero Header ── */}
           <div className="brand-header fade-in-up">
-            <h2 className="brand-title">{txt.brandName}</h2>
+            <h2 className="brand-title">
+              {txt.brandName}
+              <span className="brand-title-underline" aria-hidden="true" />
+            </h2>
             <p className="brand-tagline-main">{txt.tagline}</p>
             <p className="brand-tagline">{txt.buildLaunchGrow}</p>
             <div className="star-row">
               <span className="stars">⭐⭐⭐⭐⭐</span>
               <span className="star-label">{txt.happyClients}</span>
             </div>
+            <div className="trusted-badge" data-ocid="card.card">
+              {txt.trustedBadge}
+            </div>
           </div>
+
+          <div className="divider" />
+
+          {/* ── Live Demo Preview ── */}
+          <LiveDemoSection txt={txt} />
 
           <div className="divider" />
 
@@ -525,8 +941,27 @@ export default function App() {
 
           <div className="divider" />
 
+          {/* ── Testimonials ── */}
+          <TestimonialsSection txt={txt} />
+
+          <div className="divider" />
+
+          {/* ── Why Choose Us ── */}
+          <WhyChooseUsSection txt={txt} />
+
+          <div className="divider" />
+
+          {/* ── Pricing ── */}
+          <PricingSection txt={txt} />
+
+          <div className="divider" />
+
           {/* ── Services Section ── */}
-          <section className="card-section" data-ocid="services.section">
+          <section
+            className="card-section"
+            id="services-section"
+            data-ocid="services.section"
+          >
             <SectionHeader title={txt.ourServices} />
             <div className="services-grid">
               {txt.services.map((svc, i) => (
@@ -546,7 +981,11 @@ export default function App() {
           <div className="divider" />
 
           {/* ── Gallery Section ── */}
-          <section className="card-section" data-ocid="gallery.section">
+          <section
+            className="card-section"
+            id="gallery-section"
+            data-ocid="gallery.section"
+          >
             <SectionHeader title={txt.ourWork} />
             <div className="gallery-grid">
               {txt.galleryItems.map((label, i) => (
@@ -585,7 +1024,11 @@ export default function App() {
           <div className="divider" />
 
           {/* ── Contact / Booking Form ── */}
-          <section className="card-section" data-ocid="contact.section">
+          <section
+            className="card-section"
+            id="contact-section"
+            data-ocid="contact.section"
+          >
             <SectionHeader title={txt.bookDemo} />
             <form
               className="contact-form"
@@ -641,6 +1084,16 @@ export default function App() {
           <footer className="card-footer">
             <p className="footer-cta">{txt.footerCta}</p>
             <p>© {year} InstaSite Kerala | All Rights Reserved</p>
+            <p>
+              <a
+                href={`https://caffeine.ai?utm_source=caffeine-footer&utm_medium=referral&utm_content=${encodeURIComponent(typeof window !== "undefined" ? window.location.hostname : "")}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: "inherit", textDecoration: "none" }}
+              >
+                Built with ❤️ using caffeine.ai
+              </a>
+            </p>
 
             {!identity && (
               <button

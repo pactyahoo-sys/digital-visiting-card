@@ -1,31 +1,40 @@
-# InstaSite Kerala - Dynamic Digital Card
+# InstaSite Kerala - Digital Card
 
 ## Current State
-The app is a static React component with all profile data hardcoded in App.tsx (name, title, phone, email, location, buttons, QR). The backend has a basic Card type but it is not wired to the frontend. There is no admin login and no way to edit the card without rebuilding.
+The app is a premium mobile-first digital visiting card for Nagarajan / InstaSite Kerala. It has:
+- Brand header with tagline and 5-star rating
+- Profile photo, contact info, action buttons (WhatsApp, Save Contact, Call, Location, Visit Website, Share, QR)
+- Services grid, gallery, Google Maps embed, contact/booking form
+- Malayalam/English language toggle
+- Admin panel via Internet Identity
 
 ## Requested Changes (Diff)
 
 ### Add
-- Admin login via Internet Identity (authorization component)
-- Admin panel: edit all card fields (name, title, company, bio, phone, email, location, website) and upload profile photo
-- Blob storage for profile photo (blob-storage component)
-- Public card view reads live data from the backend canister
-- Loading state while fetching card data
-- Admin-only floating Edit button on the public card
+- Testimonial/review section with 3 real-sounding user reviews (name, business type, star rating, quote)
+- "Live Demo" preview cards section above the fold (after brand header, before profile) showing 3 sample card types
+- "Why Choose Us" section with 4 unique differentiators (speed, no-code, WhatsApp integration, lifetime support)
+- Pricing/free trial section showing 3 tiers (Free, Pro, Business) with clear CTAs
+- Nav bar at top with text labels alongside icons (Home, Services, Gallery, Contact)
 
 ### Modify
-- App.tsx: replace hardcoded data with live data fetched from the backend
-- Backend: store one card profile globally (admin-owned); support getPublicCard (anyone) and updateCard (admin only), plus profile photo blob URL
-- Profile image: loaded from blob storage URL instead of static asset
+- Main WhatsApp CTA text → "Chat on WhatsApp – Get Your Free Card Now"
+- Brand tagline → stronger: "Kerala's Fastest Digital Business Cards"
+- Sub-tagline → "Ready in 30 Minutes. No Coding. No Hassle."
+- Footer CTA → "Create Your Free Website Now – No Coding Needed"
+- Services section descriptions → more benefit-driven, specific to Kerala business owners
+- Happy clients count → "500+ Kerala Businesses Trust Us"
+- Header navigation: add clear text labels, not icon-only
 
 ### Remove
-- Hardcoded VCARD, PROFILE_IMG, and all static data constants in App.tsx
+- Nothing removed; only additions and modifications
 
 ## Implementation Plan
-1. Select `authorization` and `blob-storage` Caffeine components
-2. Generate Motoko backend: stores one global card profile, admin-only updateCard, public getPublicCard, stores profilePhotoUrl text field
-3. Build frontend:
-   - PublicCard view (default): fetches card data from backend, renders existing glassmorphic layout with live data
-   - AdminPanel view: shown when admin is logged in, form to edit all fields + upload photo, save calls updateCard
-   - Floating Edit button visible only when admin is authenticated
-   - Logout button in admin panel
+1. Update translations (en + ml) with new text, testimonials, pricing, why-choose-us data, nav labels, demo cards
+2. Add `TestimonialsSection` component inline in App.tsx
+3. Add `LiveDemoSection` component (above profile area, below brand header)
+4. Add `WhyChooseUsSection` component
+5. Add `PricingSection` component
+6. Add top `NavBar` component with text + icon labels
+7. Update existing text strings (CTA, taglines, service descriptions)
+8. Add CSS styles for all new sections
